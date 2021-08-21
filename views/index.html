@@ -7,19 +7,40 @@
 		<link rel="stylesheet" href="/public/style.css" type="text/css">
     </head>
     <body>
-        <h1> Timestamp Microserive </h1>
-        <h2> Project Description</h2>
+        <h1>Timestamp Microserive</h1>
+        <h2>Project Description</h2>
         <p>  
-            This is project 1 of 5 for <a href="http://www.freecodecamp.org">FreeCamp.org's</a>
-            APIs and Microservices certificate, the 5th of 6 full stack JavaScript certificates. 
+            This is project 1 of 5 for <a href="http://www.freecodecamp.org">FreeCamp.org's</a> 
+            APIs and Microservices certificate, the 5th of 6 full stack JavaScript certificates.
+            To use this microservice, access the subdirectory /api for the current UTC time 
+            and its unix conversion. If the user would like to convert a UTC time or unix time 
+            into its counterpart, he or she must access the subdirectory /api/ followed by the 
+            subdirectory with the time/date to be converted. When entering a date and/or time,
+            the date string used in the subdirectory must be that which contains no spaces. To
+            read more about date strings, see 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date">
+            MDN's documentation on the Date() constructor</a>. As noted there, "Date objects 
+            contain a Number that represents milliseconds since 1 January 1970 UTC." Some examples 
+            of proper use of formatting are shown below. 
         </p>
-        <h2> Example Usage: </h2>
-        <p> December 25, 2015 </p>
+        <h2>Example Usage</h2>
+        <p>Accessing December 25, 2015 00:00 GMT</p>
         <ul>
-            <li> From date: <a href="/api/2015-12-25">2015-12-25</a></li>
-            <li> From unix time: <a href="/api/1451001600000">1451001600000</a></li>
+            <li>From date: <a href="/api/2015-12-25">2015-12-25</a></li>
+            <li>From unix time: <a href="/api/1451001600000">1451001600000</a></li>
         </ul>
-        <h2> Example Output: </h2>
+        <p>Accessing other dates and times</p>
+        <ul>
+            <li><a href="/api/">Current date & time (UTC/GMT)</a></li>
+            <li><a href="/api/1970-05-31">1970-05-31</a></li>
+            <li><a href="/api/1995-12-17T13:24:00">1995-12-17T13:24:00</a>*</li>
+        </ul>
+        <p>
+            *This time will be treated as being within the time zone of the user and will be 
+            converted to GMT or UTC.
+        </p>
+        <h2> Example Output </h2>
+        <p>The following JSON object will be output for the date/time December 25, 2015 00:00 GMT:</p>
         <code id="sample-code"></code>
     </body>
     <script type="text/javascript">

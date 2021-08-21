@@ -1,14 +1,15 @@
 body {
     color: white;
     background-color: black;
-    font-family: sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10px;
 }
 
 a:hover, a:active {
-    background-color: purple;
+    background-color: darkblue;
 }
 
 a:visited, a:link {
-    color: lightblue;
+    color: lightgreen;
     text-decoration: none;
 }

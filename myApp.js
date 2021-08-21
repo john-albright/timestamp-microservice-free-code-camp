@@ -14,9 +14,9 @@ app.use("/public", express.static(__dirname + "/public"));
 // Use JSON notation! 
 app.get('/api', (req, res) => {
     var time = new Date();
-    var currentTime = time.toString();
+    var currentTime = time;
     var unixTime = time.getTime();
-    res.json({"unix": unixTime, "time": currentTime});
+    res.json({"unix": unixTime, "time": currentTime.toUTCString()});
 });
 
 // Display the time entered by the user after the path /api
@@ -24,26 +24,29 @@ app.get('/api/:time', (req, res) => {
     // Extract the number entered after the time
     var enteredTime = req.params.time;
 
-    // Assume that the date was written in YYYY-MM-DD form 
-    var currentTime = new Date(enteredTime);
-    var unixTime = currentTime.getTime();
-    console.log(`entered time: ${enteredTime} current time: ${currentTime} unix time: ${unixTime}`);
+    // Try to parse the string entered
+    var parsed = Date.parse(enteredTime);
 
-    if (!unixTime) {
-        //enteredTime += 'T00:00:00.000Z';
-        unixTime = new Number(enteredTime);
-        currentTime = new Date(unixTime);
+    // If parsed is a number, treat the entered value as a valid UTC time
+    // If parsed is NaN, treat the entered value as a valid unix time
+    if (!isNaN(parsed)) {
+        var utc = new Date(enteredTime);
+        //utc.setUTCHours(0);
+        var unix = utc.getTime();
+    } else {
+        unix = new Number(enteredTime); 
+        utc = new Date(unix);
     }
 
     // Debug statement to see the original values and conversions
-    console.log(`entered time: ${enteredTime} current time: ${currentTime} unix time: ${unixTime}`);
+    console.log(`entered time: ${enteredTime} current time: ${utc} unix time: ${unix}`);
 
     // Send an error JSON object if the date is still invalid
     // Otherwise, send the time in unix and utc format
-    if (currentTime == "Invalid Date") {
-        res.json({"error": currentTime});
+    if (utc == "Invalid Date") {
+        res.json({"error": utc});
     } else {
-        res.json({'unix': unixTime, 'utc': currentTime.toUTCString()});
+        res.json({'unix': unix, 'utc': utc.toUTCString()});
     }
 });
 
