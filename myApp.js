@@ -7,6 +7,9 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 });
 
+// Mount the middleware to serve the styles sheet in the public folder
+app.use("/public", express.static(__dirname + "/public"));
+
 // Display the current time and its unix conversion for GET requests to the path /api
 // Use JSON notation! 
 app.get('/api', (req, res) => {
@@ -29,7 +32,7 @@ app.get('/api/:time', (req, res) => {
     if (!unixTime) {
         //enteredTime += 'T00:00:00.000Z';
         unixTime = new Number(enteredTime);
-        currentTime = new Date(unixTime).toUTCString();
+        currentTime = new Date(unixTime);
     }
 
     // Debug statement to see the original values and conversions
@@ -40,7 +43,7 @@ app.get('/api/:time', (req, res) => {
     if (currentTime == "Invalid Date") {
         res.json({"error": currentTime});
     } else {
-        res.json({'unix': unixTime, 'utc': dateformat(currentTime, 'ddd, d mmm yyyy HH:MM:ss Z')});
+        res.json({'unix': unixTime, 'utc': currentTime.toUTCString()});
     }
 });
 

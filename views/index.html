@@ -4,11 +4,42 @@
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>TimeStamp Microservice</title>
-		<link rel="stylesheet" href="/public/style.css">
+		<link rel="stylesheet" href="/public/style.css" type="text/css">
     </head>
     <body>
         <h1> Timestamp Microserive </h1>
+        <h2> Project Description</h2>
+        <p>  
+            This is project 1 of 5 for <a href="http://www.freecodecamp.org">FreeCamp.org's</a>
+            APIs and Microservices certificate, the 5th of 6 full stack JavaScript certificates. 
+        </p>
         <h2> Example Usage: </h2>
+        <p> December 25, 2015 </p>
+        <ul>
+            <li> From date: <a href="/api/2015-12-25">2015-12-25</a></li>
+            <li> From unix time: <a href="/api/1451001600000">1451001600000</a></li>
+        </ul>
         <h2> Example Output: </h2>
+        <code id="sample-code"></code>
     </body>
+    <script type="text/javascript">
+
+        // Add an event once the page loads 
+        window.addEventListener('load', getSampleCode(), true);
+
+        // Create an AJAX request to get the JSON object displayed for December 25, 2015
+        function getSampleCode() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    document.getElementById('sample-code').innerHTML = this.responseText;
+                }
+            };
+            console.log('reached!');
+            xmlhttp.open('GET', '/api/2015-12-25', true);
+            xmlhttp.send();
+        }
+
+    </script>
 </html>

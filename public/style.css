@@ -1,0 +1,14 @@
+body {
+    color: white;
+    background-color: black;
+    font-family: sans-serif;
+}
+
+a:hover, a:active {
+    background-color: purple;
+}
+
+a:visited, a:link {
+    color: lightblue;
+    text-decoration: none;
+}
