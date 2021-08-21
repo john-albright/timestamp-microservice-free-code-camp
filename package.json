@@ -4,7 +4,8 @@
   "description": "A microservice that records the current time and finds the unix time stamp.",
   "main": "myApp.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node myApp.js"
   },
   "repository": {
     "type": "git",
