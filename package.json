@@ -1,0 +1,24 @@
+{
+  "name": "timestamp-microservice-free-code-camp",
+  "version": "1.0.0",
+  "description": "A microservice that records the current time and finds the unix time stamp.",
+  "main": "myApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "timestamp-microservice-free-code-camp"
+  },
+  "keywords": [
+    "timestamp",
+    "unix",
+    "api"
+  ],
+  "author": "John Albright",
+  "license": "MIT",
+  "dependencies": {
+    "dateformat": "^4.5.1",
+    "express": "^4.17.1"
+  }
+}
