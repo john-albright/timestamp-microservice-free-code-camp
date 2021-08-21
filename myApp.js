@@ -31,11 +31,10 @@ app.get('/api/:time', (req, res) => {
     // If parsed is NaN, treat the entered value as a valid unix time
     if (!isNaN(parsed)) {
         var utc = new Date(enteredTime);
-        //utc.setUTCHours(0);
         var unix = utc.getTime();
     } else {
         unix = new Number(enteredTime); 
-        utc = new Date(unix);
+        utc = new  Date(unix);
     }
 
     // Debug statement to see the original values and conversions
