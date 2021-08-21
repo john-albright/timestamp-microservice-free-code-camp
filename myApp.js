@@ -1,6 +1,5 @@
 var express = require('express');
 app = express();
-const dateformat = require('dateformat');
 
 // Display the index page for GET requests to the root (/) path
 app.get('/', (req, res) => {

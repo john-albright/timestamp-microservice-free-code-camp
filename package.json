@@ -18,7 +18,6 @@
   "author": "John Albright",
   "license": "MIT",
   "dependencies": {
-    "dateformat": "^4.5.1",
     "express": "^4.17.1"
   }
 }
