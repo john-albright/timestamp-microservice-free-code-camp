@@ -1,13 +1,29 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 app = express();
-
-// Display the index page for GET requests to the root (/) path
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/views/index.html");
-});
 
 // Mount the middleware to serve the styles sheet in the public folder
 app.use("/public", express.static(__dirname + "/public"));
+
+//app.use(express.static(__dirname + '/node_modules/bootstrap/dist/'));
+
+// Mount the body parser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Parse the data send to post requests
+app.use(bodyParser.json());
+
+// Display the index page for GET requests to the root (/) path
+// Redirect to the api/:time route after getting a POST request to the root path (via a form)
+app.route('/').get((req, res) => {
+    res.sendFile(__dirname + "/views/index.html");
+}).post((req, res) => {
+    //console.log(req.body);
+    var date = req.body.date;
+    var subdirectory = `/api/${date}`;
+    //console.log(subdirectory);
+    res.redirect(subdirectory);
+});
 
 // Display the current time and its unix conversion for GET requests to the path /api
 // Use JSON notation! 

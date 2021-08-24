@@ -2,14 +2,59 @@ body {
     color: white;
     background-color: black;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding: 10px;
+    letter-spacing: 0.5px;
+    padding: 5px;
 }
 
 a:hover, a:active {
-    background-color: darkblue;
+    color: green;
+    border-bottom: 2px green solid;
 }
 
 a:visited, a:link {
     color: lightgreen;
     text-decoration: none;
+}
+
+button {
+    background-color: darkgreen;
+    color: white;
+    border: 1px darkblue solid;
+    border-radius: 5px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: green;
+    transition: all 0.3s ease-in;
+}
+
+/* ===============================
+   Header Styles
+   Source: https://stackoverflow.com/questions/20935191/create-line-after-text-with-css
+   ===============================
+*/
+
+h1, h2, h3 {
+    color: lightseagreen;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
+    position: relative;
+}
+
+h2:after, h3:after {
+    content:"";
+    position: absolute;
+    bottom: -0.8em;
+    left: 0;
+    right: 0;
+    height: 0.5em;
+    border-top: 0.5px solid blue;
+    z-index: -1;
 }

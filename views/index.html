@@ -4,20 +4,39 @@
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>TimeStamp Microservice</title>
-		<link rel="stylesheet" href="/public/style.css" type="text/css">
+        <link rel="stylesheet" href="public/style.css" type="text/css">
     </head>
+    <script type="text/javascript">
+        // Add an event listener to be triggered once the page loads 
+        document.addEventListener('DOMContentLoaded', getSampleCode(), true);
+
+        // Create an AJAX request to get the JSON object displayed for December 25, 2015
+        function getSampleCode() {
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    document.getElementById('sample-code').innerHTML = this.responseText;
+                }
+            };
+            console.log('reached!');
+            xmlhttp.open('GET', '/api/2015-12-25', true);
+            xmlhttp.send();
+        }
+
+    </script>
     <body>
-        <h1>Timestamp Microserive</h1>
+        <h1>Timestamp Microservice</h1>
         <h2>Project Description</h2>
         <p>  
             This is project 1 of 5 for <a href="http://www.freecodecamp.org">FreeCamp.org's</a> 
             APIs and Microservices certificate, the 5th of 6 full stack JavaScript certificates.
             To use this microservice, access the subdirectory /api for the current UTC time 
-            and its unix conversion. If the user would like to convert a UTC time or unix time 
-            into its counterpart, he or she must access the subdirectory /api/ followed by the 
-            subdirectory with the time/date to be converted. When entering a date and/or time,
-            the date string used in the subdirectory must be that which contains no spaces. To
-            read more about date strings, see 
+            and its unix conversion. If the user would like to convert a UTC (Coordinated Universal Time) 
+            or GMT (Greenwich Mean Time) time or unix time into its counterpart, he or she must access 
+            the subdirectory /api/ followed by another subdirectory with the time/date to be converted. 
+            When entering a date and/or time, the date string used in the subdirectory must be that 
+            which contains no spaces. To read more about date strings, see 
             <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date">
             MDN's documentation on the Date() constructor</a>. As noted there, "Date objects 
             contain a Number that represents milliseconds since 1 January 1970 UTC." Some examples 
@@ -37,30 +56,21 @@
         </ul>
         <p>
             *This time will be treated as being within the time zone of the user and will be 
-            converted to GMT or UTC.
+            converted to GMT/UTC.
         </p>
-        <h2> Example Output </h2>
+        <h2>Example Output</h2>
         <p>The following JSON object will be output for the date/time December 25, 2015 00:00 GMT:</p>
         <code id="sample-code"></code>
+        <h2>Form Shortcut</h2>
+        <p>
+            Enter a date in the form below to be taken to the appropriate subdirectory. If left blank, 
+            the form will show you the timestamp for the current time.
+        </p>
+        <div>
+            <form action="/" method="post">
+                <input type="text" name="date" placeholder="Date">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
-    <script type="text/javascript">
-
-        // Add an event once the page loads 
-        window.addEventListener('load', getSampleCode(), true);
-
-        // Create an AJAX request to get the JSON object displayed for December 25, 2015
-        function getSampleCode() {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if(this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
-                    document.getElementById('sample-code').innerHTML = this.responseText;
-                }
-            };
-            console.log('reached!');
-            xmlhttp.open('GET', '/api/2015-12-25', true);
-            xmlhttp.send();
-        }
-
-    </script>
 </html>
