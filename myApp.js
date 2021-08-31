@@ -2,6 +2,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 app = express();
 
+// Enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
+// So that API is remotely testable by FCC 
+var cors = require('cors');
+app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 204
+
 // Mount the middleware to serve the styles sheet in the public folder
 app.use("/public", express.static(__dirname + "/public"));
 
