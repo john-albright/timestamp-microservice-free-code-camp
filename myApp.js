@@ -36,7 +36,7 @@ app.get('/api', (req, res) => {
     var time = new Date();
     var currentTime = time;
     var unixTime = time.getTime();
-    res.json({"unix": unixTime, "time": currentTime.toUTCString()});
+    res.json({"unix": unixTime, "utc": currentTime.toUTCString()});
 });
 
 // Display the time entered by the user after the path /api
@@ -54,7 +54,7 @@ app.get('/api/:time', (req, res) => {
         var unix = utc.getTime();
     } else {
         unix = new Number(enteredTime); 
-        utc = new  Date(unix);
+        utc = new Date(unix);
     }
 
     // Debug statement to see the original values and conversions
@@ -63,7 +63,7 @@ app.get('/api/:time', (req, res) => {
     // Send an error JSON object if the date is still invalid
     // Otherwise, send the time in unix and utc format
     if (utc == "Invalid Date") {
-        res.json({"error": utc});
+        res.json({"error": utc.toString()});
     } else {
         res.json({'unix': unix, 'utc': utc.toUTCString()});
     }
